@@ -1,0 +1,35 @@
+{
+  "author": "Karl Skomski <karl@skomski.com> (http://skomski.com)",
+  "name": "reskit",
+  "description": "Redis backed data structures for Node.js",
+  "version": "0.0.1",
+  "keywords": [
+    "redis",
+    "structures",
+    "data",
+    "set",
+    "queue",
+    "list"
+  ],
+  "repository": {
+    "url": ""
+  },
+  "main": "lib/index",
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "require-all": "0.0.3",
+    "redis": "0.7.1",
+    "hiredis": "0.1.14"
+  },
+  "devDependencies": {
+    "urun": "0.0.6",
+    "utest": "0.0.5",
+    "coffee-script": "1.2.0"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">=0.4.0"
+  }
+}
