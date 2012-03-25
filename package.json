@@ -12,7 +12,7 @@
     "list"
   ],
   "repository": {
-    "url": ""
+    "url": "git://github.com/Skomski/node-reskit.git"
   },
   "main": "lib/index",
   "scripts": {
