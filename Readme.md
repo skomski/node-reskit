@@ -9,7 +9,7 @@ Redis backed data structures for Node.js
 ```
 npm install reskit
 ```
-## Usage
+## Example Usage
 
 ```javascript
 var Reskit = require('reskit');
