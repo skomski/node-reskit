@@ -15,17 +15,24 @@ npm install reskit
 var Reskit = require('reskit');
 
 var pool = new Reskit.Pool({
-  host : '127.0.0.1'
-  port : 6379
+  host: '127.0.0.1',
+  port: 6379
 });
 
-var string = new Reskit.String({
-  name : 'teststring',
-  pool : pool
+var testString = new Reskit.String({
+  name: 'testString',
+  pool: pool
 });
 
-string.set('testvalue', function(err) {
+testString.set('testvalue', function(err) {
   if (err) throw err;
+
+  testString.get(function(err, value) {
+    if (err) throw err;
+
+    console.log(value);
+    pool.quit();
+  });
 });
 ```
 
