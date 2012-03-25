@@ -1,8 +1,6 @@
-This is a fork of visionmedia's rediskit. Some additions and improvements :)
+This is a fork of visionmedia's rediskit. Some additions and changes to fit into my projects. :)
 
-# node-reskit
-
-[![Build Status](https://secure.travis-ci.org/Skomski/node-reskit.png?branch=master)](http://travis-ci.org/Skomski/node-reskit)
+# node-reskit [![Build Status](https://secure.travis-ci.org/Skomski/node-reskit.png?branch=master)](http://travis-ci.org/Skomski/node-reskit)
 
 Redis backed data structures for Node.js
 
@@ -11,6 +9,7 @@ Redis backed data structures for Node.js
 ```
 npm install reskit
 ```
+## Usage
 
 ```javascript
 var Reskit = require('reskit');
