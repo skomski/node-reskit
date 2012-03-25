@@ -7,16 +7,25 @@ class RedisPool
     @clients = []
     @blockers = []
     @subscribers = []
+    @maxClients ?= 10
 
   end: () ->
     allClients = @clients.concat(@blockers, @subscribers)
     for index, client of allClients
       client.end()
 
+    @clients     = []
+    @blockers    = []
+    @subscribers = []
+
   quit: () ->
     allClients = @clients.concat(@blockers, @subscribers)
     for index, client of allClients
       client.quit()
+
+    @clients     = []
+    @blockers    = []
+    @subscribers = []
 
   client: () ->
     if @clients.length == @maxClients

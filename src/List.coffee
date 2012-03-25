@@ -3,11 +3,11 @@ Key = require './Key'
 class List extends Key
   module.exports = List
 
-  lpush: (str, cb) ->
-    @pool.client().lpush @name, str, cb
+  lpush: (item, cb) ->
+    @pool.client().lpush @name, item, cb
 
-  rpush: (str, cb) ->
-    @pool.client().rpush @name, str, cb
+  rpush: (item, cb) ->
+    @pool.client().rpush @name, item, cb
 
   lpop: (cb) ->
     @pool.client().lpop @name, cb
