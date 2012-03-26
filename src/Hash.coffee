@@ -9,6 +9,9 @@ class Hash extends Key
   get: (key, cb) ->
     @pool.client().hget @name, field, cb
 
+  hmset: (object, cb) ->
+    @pool.client().hmset @name, object, cb
+
   length: (cb) ->
     @pool.client().hlen @name, cb
 
