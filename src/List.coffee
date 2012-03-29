@@ -16,15 +16,12 @@ class List extends Key
     @pool.client().rpop @name, cb
 
   brpop: (timeout, cb) ->
-    if 'function' == typeof timeout
-      cb = timeout
-      timeout = 0
     @pool.blocker().brpop @name, timeout, cb
 
+  brpoplpush: (dest, timeout, cb) ->
+    @pool.blocker().brpoplpush @name, dest, timeout, cb
+
   blpop: (timeout, cb) ->
-    if 'function' == typeof timeout
-      cb = timeout
-      timeout = 0
     @pool.blocker().blpop @name, timeout, cb
 
   range: (start, stop, cb) ->

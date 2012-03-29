@@ -4,10 +4,15 @@ class Queue extends List
   module.exports = Queue
 
   pop: (cb) ->
-    @blpop (err, result) ->
+    @brpop 0, (err, result) ->
       return cb err if err?
       cb null, result[1]
 
+  popPush: (dest, cb) ->
+    @brpoplpush dest.name || dest, 0, (err, result) ->
+      return cb err if err?
+      cb null, result
+
   push: (str, cb) ->
-    @rpush str, cb
+    @lpush str, cb
 

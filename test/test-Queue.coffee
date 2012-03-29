@@ -1,25 +1,44 @@
 Assert = require 'assert'
 { Queue: RedisQueue, Pool: RedisPool } = require '..'
 
+redis = require('redis').createClient()
+
 testFinished = false
 
 pool = new RedisPool
-  host : '127.0.0.1'
-  port : 6379
+  host: '127.0.0.1'
+  port: 6379
 
-queue = new RedisQueue
-  name : 'testqueue'
-  pool : pool
+newJobs = new RedisQueue
+  name: 'newJobs'
+  pool: pool
 
-queue.push 'testvalue', (err) ->
+readyJobs = new RedisQueue
+  name: 'readyJobs'
+  pool: pool
+
+redis.del ['newJobs', 'readyJobs'], (err) ->
   Assert.ifError err
 
-  queue.pop (err, item) ->
+  newJobs.push ['testvalue', 'testvalue2'], (err) ->
     Assert.ifError err
-    Assert.equal item, 'testvalue'
 
-    testFinished = true
-    pool.quit()
+    newJobs.pop (err, item) ->
+      Assert.ifError err
+      Assert.equal item, 'testvalue'
+
+      newJobs.popPush readyJobs, (err, item) ->
+        Assert.ifError err
+        Assert.equal item, 'testvalue2'
+
+        readyJobs.pop (err, item) ->
+          Assert.ifError err
+
+          Assert.equal item, 'testvalue2'
+
+          testFinished = true
+          redis.quit()
+          pool.quit()
 
 process.on 'exit', () ->
   Assert.ok testFinished
