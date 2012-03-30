@@ -2,7 +2,7 @@
   "author": "Karl Skomski <karl@skomski.com> (http://skomski.com)",
   "name": "reskit",
   "description": "Redis backed data structures for Node.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "redis",
     "structures",
